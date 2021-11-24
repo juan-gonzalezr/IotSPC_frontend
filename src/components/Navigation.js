@@ -1,7 +1,8 @@
 //import React, { Component } from "react";
 import {Link} from 'react-router-dom'
-
+import Perfil from './Perfil.js'
 import {useEffect , useState} from 'react'
+import { propTypes } from 'react-bootstrap/esm/Image';
 //import  from 'react'
 const googleClientId="26187728898-frhiuash53889sp0v91ps9ng3b133dpe.apps.googleusercontent.com";
 
@@ -36,16 +37,23 @@ function Navigation() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [imageUrl, setImageUrl] = useState();
+  const [profile1,setProfile1]=useState()
   
   const onSuccess = (googleUser) => {
     debugger;
     console.log('result from google', googleUser);
     setIsLoggedIn(true);
     const profile = googleUser.getBasicProfile();
+    setProfile1(profile)
     setName(profile.getName());
     setEmail(profile.getEmail());
     setImageUrl(profile.getImageUrl());
+    
+    
   };
+  
+  // <Perfil name={name} email={email} imageUrl={imageUrl} /> 
+   
   
   const onFailure = () => {
     setIsLoggedIn(false);
@@ -71,6 +79,7 @@ function Navigation() {
     });
   }
   
+      
   
   useEffect(() => {
     
@@ -84,7 +93,8 @@ function Navigation() {
         (async () => { 
           const _googleAuth = await _gapi.auth2.init({
            client_id: googleClientId
-          });
+           
+          } );
           setGoogleAuth(_googleAuth);
           renderSigninButton(_gapi);
         })();
@@ -95,7 +105,7 @@ function Navigation() {
     loadGoogleScript();
     
   }, []);
-
+  
   
   
   
@@ -104,7 +114,7 @@ function Navigation() {
       <header className="App-header">
         
         {!isLoggedIn &&
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <nav  className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           
           <Link className="navbar-brand" to="/"> SPC </Link>
@@ -114,15 +124,21 @@ function Navigation() {
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
-            aria-expanded="false"
+            aria-expanded="true"
             aria-label="Toggle navigation"
+            
           >
+            
             <span className="navbar-toggler-icon"></span>
+            
           </button>
+          
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               
-              
+            <li className="nav-item">
+                <Link className="nav-link" to="/Nosotros">Contactenos</Link>
+              </li>
               <li className="nav-item">
               <Link className="nav-link" to="/Mimascota">{<div id="google-signin"></div>  }</Link>
                 
@@ -130,6 +146,7 @@ function Navigation() {
                   
                 
               </li>
+              
               <li className="nav-item">
                 <Link className="nav-link" to="/Register">Register</Link>
               </li>
@@ -137,9 +154,11 @@ function Navigation() {
             </ul>
           </div>
         </div>
-      </nav>
         
+      </nav>
+       
         }
+
         
         {isLoggedIn &&
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -157,19 +176,23 @@ function Navigation() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+          
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+                <Link className="nav-link" to="/Nosotros">Contactenos</Link>
+              </li>
               
               <li className="nav-item">
                 <Link className="nav-link" to="/Mimascota">
                   Mi Mascota
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Perfil">
-                  Perfil
-                </Link>
+              <li className="nav-item"> 
+                <Perfil name={name} email={email} imageUrl={imageUrl} />
+                
               </li>
+              
               
               <li className="nav-item">
                 <Link className="nav-link" to="/" >
@@ -182,7 +205,21 @@ function Navigation() {
       </nav>
          
         }
+        
       </header>
+      
+       
+       
+            
+         
+        
+        
+        
+        
+      
+
+      
+      
     </div>
   );
 }

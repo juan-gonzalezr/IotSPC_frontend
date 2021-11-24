@@ -1,57 +1,39 @@
 //import Navigation from '../NavBar/Navigation.js'
-import ListGroup from 'react-bootstrap/ListGroup'
-import React, { Component } from 'react'
-import Badge from 'react-bootstrap/Badge'
-//import Navigation from './Navigation'
+//import React, { Component } from "react";
+import {Link} from 'react-router-dom'
+
+import {useEffect , useState} from 'react'
+//import  from 'react'
 
 
-export default class Profile extends Component {
+
+function Perfil(props) {
+  const mystyle2 = {
+    width:"40px",
+    height:"40px",
+    borderRadius:"40%",
+    alignItems:"center",
+    marginTop:"3px"
+    
+  };
   
-    
-    
-    render() {
-        return (
-            <div>
-                
-                <ListGroup as="ol" numbered>
-  <ListGroup.Item
-    as="li"
-    className="d-flex justify-content-between align-items-start"
-  >
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Nombre</div>
-      Juan David Gonzalez
-    </div>
-    <Badge variant="primary" pill>
+  
+  var propiedades=props
+  console.log("estas son las propiedades "+propiedades)
+  
+  return (
+    <div id="perfil">
       
-    </Badge>
-  </ListGroup.Item>
-  <ListGroup.Item
-    as="li"
-    className="d-flex justify-content-between align-items-start"
-  >
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Email</div>
-        juangonzalezr020796@gmail.com
+        <a href="https://myaccount.google.com/?utm_source=account-marketing-page&utm_medium=go-to-account-button&pli=1" target="_blank">
+          <img style={mystyle2} id="hperfil" src={props.imageUrl} />
+        
+        </a>
+        
+        
     </div>
-    <Badge variant="primary" pill>
-     
-    </Badge>
-  </ListGroup.Item>
-  <ListGroup.Item
-    as="li"
-    className="d-flex justify-content-between align-items-start"
-  >
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Celular</div>
-      +57312*******
-    </div>
-    <Badge variant="primary" pill>
-      
-    </Badge>
-  </ListGroup.Item>
-</ListGroup>
-            </div>
-        )
-    }
+  );
 }
+
+
+export default Perfil;
+

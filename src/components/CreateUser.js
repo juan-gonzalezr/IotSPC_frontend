@@ -47,7 +47,7 @@ class CreateUser extends Component {
   onSubmit = async (e) => {
     e.preventDefault();
     console.log(this.state.users);
-    const res = await axios.post(" http://Localhost:4000/api/users/", {
+    const res = await axios.post(" https://data.mongodb-api.com/app/data-wvdpl/endpoint/data/beta", {
       Nombres: this.state.Nombres,
       Apellidos: this.state.Apellidos,
       Correo: this.state.Correo,
@@ -60,7 +60,7 @@ class CreateUser extends Component {
     
   };
   async componentDidMount() {
-    const res = await axios.get(" http://Localhost:4000/api/users/");
+    const res = await axios.get(" mongodb+srv://iotspc:<iot2021?>@iotspc.4qccr.mongodb.net/iotspc?retryWrites=true&w=majority");
     this.setState({ users: res.data });
     console.log(this.state.users);
   }
