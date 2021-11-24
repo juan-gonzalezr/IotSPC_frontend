@@ -3,8 +3,21 @@ import React, { Component } from 'react'
 import Card from 'react-bootstrap/Card'
 import { Row,Col } from 'react-bootstrap'
 import Stack from 'react-bootstrap/Stack'
+import axios from 'axios'
 import { Container } from 'react-bootstrap'
+
+//GET https://api.thingspeak.com/update?api_key=7IAMJMCARR1H3JAK&field4=1
+
+
 export default class Perfil extends Component {
+    onSubmit = async() => {
+        
+        
+        const res = await axios.post(" https://api.thingspeak.com/update?api_key=7IAMJMCARR1H3JAK&field4=1",{});
+        
+        console.log("se envio la peticion get ",res);
+        
+      };
     render() {
         return (
             <div>
@@ -31,7 +44,7 @@ export default class Perfil extends Component {
                             </Card.Body>
                     
                         </Card>
-                        <Card style={{ width: '30rem', height:'25rem' }} bg ={'Info'}>
+                <Card style={{ width: '30rem', height:'25rem' }} bg ={'Info'}>
                             <iframe 
                             width="380" 
                             height="260" 
@@ -47,6 +60,9 @@ export default class Perfil extends Component {
                     </Card.Body>
                     
                 </Card>
+
+                
+                
                 
                         <Card style={{ width: '30rem', height:'25rem' }} bg ={'Info'}>
                             <iframe 
@@ -97,6 +113,24 @@ export default class Perfil extends Component {
                             Aqui puedes observar el ritmo del nivel de líquido de tu mascota a lo largo del día
                             </Card.Text>
                             </Card.Body>                
+                        </Card>
+
+                        </Col>
+                    </Row>
+                </Container>
+                <Container>
+                    <Row>
+                        <Col>
+                        <Card style={{ width: '30rem', height:'10rem' }} bg ={'Info'}>
+                        Si desea dispensar comida para su mascota optrima el boton
+                            <Card.Body>
+                            <Card.Title>Dispensador</Card.Title>
+                            <Card.Text>
+                            
+                            <button onClick={this.onSubmit}>Dispensar</button> 
+                            </Card.Text>
+                            </Card.Body>
+                            
                         </Card>
                         </Col>
                     </Row>
